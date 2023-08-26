@@ -1,12 +1,17 @@
-cc=gcc
-BUILD_DIR=out
+cc=tcc
+BUILD_DIR=build
 
-.PHONY: all help build run
-build:
-	$(cc) "src/main.c" -o "$(BUILD_DIR)/m.out"
+.PHONY: all help build run clean
+
+clean:
+	@rm -rvf ./$(BUILD_DIR)/kimyacının_programı.elf64
+
+build: $(clean)
+	@[ -d "$(BUILD_DIR)" ] || mkdir -v $(BUILD_DIR)
+	$(cc) "src/main.c" -I./include/ -o "$(BUILD_DIR)/kimyacının_programı.elf64"
 
 run:
-	./$(BUILD_DIR)/m.out
+	./$(BUILD_DIR)/kimyacının_programı.elf64
 
 help:
-	@printf "build: derler\n$(BUILD_DIR) çıktı yolu"
+	@printf "build: $(BUILD_DIR) dizinine derler\nrun: çalıştırı\nclean: temizler"

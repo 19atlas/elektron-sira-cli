@@ -7,6 +7,7 @@ clean:
 	@rm -rvf ./$(BUILD_DIR)/kimyacının_programı.elf64
 
 build: $(clean)
+	@[ -d "$(BUILD_DIR)" ] || mkdir -v $(BUILD_DIR)
 	$(cc) "src/main.c" -I./include/ -o "$(BUILD_DIR)/kimyacının_programı.elf64"
 
 run:
